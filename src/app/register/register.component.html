@@ -1,0 +1,13 @@
+<h2>Registro de usuario</h2>
+<form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control col-md-9" formControlName="email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control col-md-9" formControlName="password">
+    </div>
+    <input type="submit" value="Enviar">
+</form>
+<br/>

@@ -15,6 +15,16 @@ import { DataServices } from './data.services';
 import { LoginService } from './login/login.service';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { RegisterComponent } from './register/register.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
+import { getAnalytics } from "firebase/analytics";
+import { LoginGuardian } from './login/login-guardian';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './shared/navbar/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +35,9 @@ import { CookieService } from 'ngx-cookie-service';
     ComicsComponent,
     ComicComponent,
     LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    FooterComponent,
 
   ],
   imports: [
@@ -33,10 +46,15 @@ import { CookieService } from 'ngx-cookie-service';
     RouterModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+
     
   
   ],
-  providers: [DataServices, LoginService, CookieService],
+  providers: [DataServices, LoginService, CookieService, RegisterComponent, LoginGuardian],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

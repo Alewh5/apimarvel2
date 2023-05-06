@@ -5,6 +5,10 @@ import firebase from "firebase/compat/app";
 
 import 'firebase/compat/auth'
 import { CookieService } from "ngx-cookie-service";
+import { environment } from "src/environments/environment.prod";
+
+firebase.initializeApp(environment.firebase);
+
 
 @Injectable()
 export class LoginService{
@@ -13,7 +17,7 @@ export class LoginService{
     constructor(private router:Router, private cookies:CookieService){}
     
     
-    token:string;
+    token: string;
     
     login(email:string, password:string){
         
